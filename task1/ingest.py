@@ -1,24 +1,47 @@
 import json
-import re
 import os
-# import mysql.connector
+from mysql.connector import connect
+from dotenv import load_dotenv
 
-#-- files
-input_file = 'task1_d.json'
-output_file = 'task1_d_valid.json'
+# Load environment variables
+load_dotenv()
 
-with open(input_file,'r') as file:
-    raw_data = file.read()
+# Database Credentials
+DB_HOST = os.getenv("DB_HOST")
+DB_USER = os.getenv("DB_USER")
+DB_PASS = os.getenv("DB_PASS")
+DB_NAME = os.getenv("DB_NAME")
 
-# converting invalid file to valid json file using regex
-valid_json = re.sub(r':(\w+)\s*=>',r'"\1":',raw_data)
+#load valid json file
+input_file = './data/task1_d_valid.json'
 
-# Checking if valid JSON
-data = json.loads(valid_json)
+with open(input_file,'r',encoding='utf-8') as f:
+    data = json.load(f)
 
-# Save final file
-with open(output_file,'w',encoding='utf-8') as f:
-    json.dump(data,f,indent=4)
+# Connect to mysql
+conn = connect(
+    host=DB_HOST,
+    user=DB_USER,
+    password=DB_PASS,
+    database=DB_NAME
+)
 
-if os.path.getsize(output_file) > 0:
-    print("file saved successfully.")
+cursor = conn.cursor()
+
+# Create Table
+cursor.execute(
+    '''
+    CREATE TABLE IF NOT EXISTS book_raw(
+        id INT PRIMARY KEY,
+        title VARCHAR(255),
+        author VARCHAR(255),
+        genre VARCHAR(100),
+        publisher VARCHAR(100),
+        year INT,
+        price DECIMAL(10,2)
+    )
+'''
+)
+
+# Data insertion
+insert_query = 
