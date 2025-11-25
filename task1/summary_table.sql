@@ -17,3 +17,13 @@ SELECT * FROM summary_table;
 
 SELECT * FROM books_raw
 LIMIT 100;
+
+-- Counting total records in books_raw table
+SELECT
+	COUNT(*) AS total_book
+FROM books_raw;
+
+-- Counting total records in summary table
+SELECT
+	COUNT(*) AS total_record
+FROM summary_table;
