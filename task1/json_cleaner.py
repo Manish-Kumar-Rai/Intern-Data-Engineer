@@ -21,7 +21,7 @@ def clean_price(price_str):
     try:
         price = float(cleaned)
         if is_euro:
-            price *= 1.2
+            price *= 1.2   # Converto to dollar 
         return round(price,2)
     except ValueError:
         return None
@@ -45,6 +45,8 @@ valid_json = re.sub(r':(\w+)\s*=>', r'"\1": ', raw_data)
 
 # Checking if valid JSON
 data = json.loads(valid_json)
+
+# print(len(data))
 
 for record in data:
     if 'price' in record:

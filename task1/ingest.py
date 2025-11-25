@@ -31,10 +31,11 @@ cursor = conn.cursor()
 # Create Table
 cursor.execute(
     '''
-    CREATE TABLE IF NOT EXISTS book_raw(
-        id INT PRIMARY KEY,
-        title VARCHAR(255),
-        author VARCHAR(255),
+    CREATE TABLE IF NOT EXISTS books_raw(
+        id INT AUTO_INCREMENT PRIMARY KEY,
+        book_id VARCHAR(50),
+        title VARCHAR(100),
+        author VARCHAR(100),
         genre VARCHAR(100),
         publisher VARCHAR(100),
         year INT,
@@ -44,4 +45,24 @@ cursor.execute(
 )
 
 # Data insertion
-insert_query = 
+insert_query = '''
+    INSERT INTO books_raw (book_id,title,author,genre,publisher,year,price)
+    VAlUES (%s,%s,%s,%s,%s,%s,%s)
+'''
+
+for book in data:
+    cursor.execute(insert_query,(
+        str(book.get('id')),
+        book.get('title'),
+        book.get('author'),
+        book.get('genre'),
+        book.get('publisher'),
+        int(book.get('year')),
+        float(book.get('price'))
+    ))
+
+conn.commit()
+print('Data ingested successfully.')
+
+cursor.close()
+conn.close()
