@@ -9,6 +9,7 @@ BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 st.set_page_config(page_title="Book Sales Dashboard", layout="wide")
 st.title("📊 Book Sales Analytics Dashboard")
 
+
 # Sidebar folder selection
 st.sidebar.header("Select Dataset")
 folder_options = {
