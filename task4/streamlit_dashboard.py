@@ -4,15 +4,17 @@ import matplotlib.pyplot as plt
 import os
 from Data_processing import analyze_folder, plot_revenue
 
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+
 st.set_page_config(page_title="Book Sales Dashboard", layout="wide")
 st.title("📊 Book Sales Analytics Dashboard")
 
 # Sidebar folder selection
 st.sidebar.header("Select Dataset")
 folder_options = {
-    "DATA1": "data/DATA1",
-    "DATA2": "data/DATA2",
-    "DATA3": "data/DATA3"
+    "DATA1": os.path.join(BASE_DIR, "data/DATA1"),
+    "DATA2": os.path.join(BASE_DIR, "data/DATA2"),
+    "DATA3": os.path.join(BASE_DIR, "data/DATA3")
 }
 
 selected_name = st.sidebar.selectbox("Choose dataset folder:", list(folder_options.keys()))
@@ -98,4 +100,4 @@ if st.button("Save Chart to plots/ folder"):
     plot_revenue(results["daily_revenue"], folder_path)
     st.success(f"Chart saved → plots/{os.path.basename(folder_path)}_daily_revenue.png")
 
-st.caption("Dashboard powered by your Data_processing.py script")
+st.caption("Created By Manish Rai")
