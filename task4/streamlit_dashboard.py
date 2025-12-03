@@ -58,8 +58,8 @@ with col2:
     author_str = ", ".join(author_tuple) if author_tuple else "N/A"
     st.success(author_str)
 
-    st.subheader("Best Buyer (All Aliases)")
-    aliases = results["best_buyer_aliases"]
+    st.subheader("Top Customer (All Aliases)")
+    aliases = results["top_customer"]
     if aliases:
         st.code(f"[{', '.join(map(str, sorted(aliases)))}]", language="text")
     else:
