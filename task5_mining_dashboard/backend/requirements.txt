@@ -1,0 +1,10 @@
+fastapi
+uvicorn[standard]
+pandas
+numpy
+scipy
+aiohttp
+pyppeteer
+jinja2
+python-multipart
+python-dotenv
