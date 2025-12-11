@@ -7,8 +7,8 @@ import Summary from "./components/Summary";
 export default function App() {
   const [raw, setRaw] = useState(null);
   const [analysis, setAnalysis] = useState(null);
-  const [chartType, setChartType] = useState("line"); // line, bar, stacked
-  const [trendDegree, setTrendDegree] = useState(1);   // polynomial degree 1-4
+  const [chartType, setChartType] = useState("line");
+  const [trendDegree, setTrendDegree] = useState(1);
   const [params, setParams] = useState({
     iqr_k: 1.5,
     z_thresh: 3,
@@ -41,10 +41,8 @@ export default function App() {
     if (!analysis) return alert("Run analysis first!");
     try {
       setLoadingPdf(true);
-      const charts = {}; // Optionally capture chart images from ChartPanel
+      const charts = {};
       const blob = await generateReport({ analysis, charts });
-
-      // Create a proper Blob for PDF download
       const pdfBlob = new Blob([blob], { type: "application/pdf" });
       const url = window.URL.createObjectURL(pdfBlob);
       const a = document.createElement("a");
@@ -63,22 +61,50 @@ export default function App() {
   };
 
   return (
-    <div style={{ padding: "2rem", fontFamily: "Arial, sans-serif" }}>
-      <h1>Mining Dashboard</h1>
-      <Controls
-        params={params}
-        setParams={setParams}
-        onAnalyze={runAnalyze}
-        onExport={exportPdf}
-        chartType={chartType}
-        setChartType={setChartType}
-        trendDegree={trendDegree}
-        setTrendDegree={setTrendDegree}
-        loadingAnalysis={loadingAnalysis}
-        loadingPdf={loadingPdf}
-      />
-      <Summary analysis={analysis} />
-      <ChartPanel analysis={analysis} chartType={chartType} trendDegree={trendDegree} />
+    <div style={{ fontFamily: "'Segoe UI', Roboto, sans-serif", backgroundColor: "#f4f6f9", minHeight: "100vh" }}>
+      <header style={{ backgroundColor: "#0d47a1", color: "#fff", padding: "1rem 2rem", display: "flex", alignItems: "center", justifyContent: "space-between" }}>
+        <h1 style={{ margin: 0, fontSize: "1.8rem" }}>Weyland-Yutani Mining Dashboard</h1>
+        <button
+          onClick={exportPdf}
+          disabled={loadingPdf || !analysis}
+          style={{
+            backgroundColor: "#ffb300",
+            border: "none",
+            padding: "0.5rem 1rem",
+            borderRadius: "4px",
+            fontWeight: "bold",
+            cursor: "pointer"
+          }}
+        >
+          {loadingPdf ? "Generating PDF..." : "Export PDF"}
+        </button>
+      </header>
+
+      <main style={{ display: "flex", padding: "2rem", gap: "2rem" }}>
+        <aside style={{ flex: "0 0 300px", backgroundColor: "#fff", padding: "1rem", borderRadius: "8px", boxShadow: "0 2px 6px rgba(0,0,0,0.1)" }}>
+          <Controls
+            params={params}
+            setParams={setParams}
+            onAnalyze={runAnalyze}
+            chartType={chartType}
+            setChartType={setChartType}
+            trendDegree={trendDegree}
+            setTrendDegree={setTrendDegree}
+            loadingAnalysis={loadingAnalysis}
+          />
+        </aside>
+
+        <section style={{ flex: 1, display: "flex", flexDirection: "column", gap: "2rem" }}>
+          <Summary analysis={analysis} />
+          <div style={{ backgroundColor: "#fff", padding: "1rem", borderRadius: "8px", boxShadow: "0 2px 6px rgba(0,0,0,0.1)" }}>
+            <ChartPanel analysis={analysis} chartType={chartType} trendDegree={trendDegree} />
+          </div>
+        </section>
+      </main>
+
+      <footer style={{ textAlign: "center", padding: "1rem", marginTop: "2rem", color: "#777" }}>
+        &copy; {new Date().getFullYear()} Weyland-Yutani Corporation
+      </footer>
     </div>
   );
 }
