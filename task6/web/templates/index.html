@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Fake User Generator</title>
+    <style>
+        body {
+            font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f9f9f9;
+            color: #333;
+            margin: 20px;
+        }
+
+        h1 {
+            text-align: center;
+            color: #2c3e50;
+            margin-bottom: 20px;
+        }
+
+        form {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+
+        input[type="text"], input[type="number"] {
+            padding: 5px 8px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+
+        button {
+            padding: 6px 12px;
+            background-color: #3498db;
+            border: none;
+            color: white;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: background-color 0.2s ease;
+        }
+
+        button:hover {
+            background-color: #2980b9;
+        }
+
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            background-color: white;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        th, td {
+            border: 1px solid #ddd;
+            padding: 10px;
+            text-align: center;
+            font-size: 14px;
+        }
+
+        th {
+            background-color: #2c3e50;
+            color: white;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+
+        tr:hover {
+            background-color: #e0f7fa;
+        }
+
+        .table-container {
+            overflow-x: auto;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Fake User Generator</h1>
+
+    <!-- Generate form -->
+    <form method="get">
+        <label>Locale: <input name="locale" value="{{ locale }}"></label>
+        <label>Seed: <input name="seed" value="{{ seed }}"></label>
+        <label>Batch size: <input name="batch_size" value="{{ batch_size }}"></label>
+        <button type="submit">Generate</button>
+    </form>
+
+    <!-- Next batch form -->
+    <form method="post">
+        <input type="hidden" name="locale" value="{{ locale }}">
+        <input type="hidden" name="seed" value="{{ seed }}">
+        <input type="hidden" name="batch_idx" value="{{ batch_idx }}">
+        <input type="hidden" name="batch_size" value="{{ batch_size }}">
+        <button name="action" value="next">Next Batch</button>
+    </form>
+
+    <div class="table-container">
+        <table>
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Name</th>
+                    <th>Gender</th>
+                    <th>Address</th>
+                    <th>City</th>
+                    <th>Postal Code</th>
+                    <th>Region</th>
+                    <th>Eye Color</th>
+                    <th>Phone</th>
+                    <th>Email</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for r in rows %}
+                <tr>
+                    <td>{{ loop.index0 }}</td>
+                    <td>{{ r.full_name }}</td>
+                    <td>{{ r.gender }}</td>
+                    <td>{{ r.address }}</td>
+                    <td>{{ r.city }}</td>
+                    <td>{{ r.postal_code }}</td>
+                    <td>{{ r.region }}</td>
+                    <td>{{ r.eye_color }}</td>
+                    <td>{{ r.phone }}</td>
+                    <td>{{ r.email }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>

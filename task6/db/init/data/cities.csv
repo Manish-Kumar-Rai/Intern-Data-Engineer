@@ -1,0 +1,121 @@
+locale,city,region,postal_code
+en_US,New York,NY,10001
+en_US,Los Angeles,CA,90001
+en_US,Chicago,IL,60601
+en_US,Houston,TX,77001
+en_US,Phoenix,AZ,85001
+en_US,Philadelphia,PA,19101
+en_US,San Antonio,TX,78201
+en_US,San Diego,CA,92101
+en_US,Dallas,TX,75201
+en_US,San Jose,CA,95101
+en_US,Austin,TX,78701
+en_US,Jacksonville,FL,32201
+en_US,Fort Worth,TX,76101
+en_US,Columbus,OH,43215
+en_US,Charlotte,NC,28201
+en_US,Indianapolis,IN,46201
+en_US,San Francisco,CA,94101
+en_US,Seattle,WA,98101
+en_US,Denver,CO,80201
+en_US,Oklahoma City,OK,73101
+en_US,Nashville,TN,37201
+en_US,El Paso,TX,79901
+en_US,Washington,DC,20001
+en_US,Las Vegas,NV,89101
+en_US,Detroit,MI,48201
+en_US,Louisville,KY,40201
+en_US,Memphis,TN,38101
+en_US,Baltimore,MD,21201
+en_US,Milwaukee,WI,53201
+en_US,Albuquerque,NM,87101
+en_US,Tucson,AZ,85701
+en_US,Fresno,CA,93701
+en_US,Mesa,AZ,85201
+en_US,Sacramento,CA,95814
+en_US,Atlanta,GA,30301
+en_US,Kansas City,MO,64101
+en_US,Colorado Springs,CO,80901
+en_US,Omaha,NE,68101
+en_US,Raleigh,NC,27601
+en_US,Miami,FL,33101
+en_US,Long Beach,CA,90801
+en_US,Virginia Beach,VA,23450
+en_US,Oakland,CA,94601
+en_US,Minneapolis,MN,55401
+en_US,Tulsa,OK,74101
+en_US,Bakersfield,CA,93301
+en_US,Wichita,KS,67201
+en_US,Arlington,TX,76001
+en_US,Aurora,CO,80010
+en_US,Tampa,FL,33601
+en_US,New Orleans,LA,70112
+en_US,Cleveland,OH,44101
+en_US,Anaheim,CA,92801
+en_US,Honolulu,HI,96813
+en_US,Henderson,NV,89002
+en_US,Orlando,FL,32801
+en_US,Riverside,CA,92501
+en_US,Lexington,KY,40502
+en_US,Stockton,CA,95201
+en_US,Corpus Christi,TX,78401
+en_US,Cincinnati,OH,45201
+en_US,Anchorage,AK,99501
+en_US,Saint Paul,MN,55101
+en_US,Toledo,OH,43601
+en_US,Greensboro,NC,27401
+en_US,Newark,NJ,07101
+en_US,Plano,TX,75023
+en_US,Lincoln,NE,68501
+en_US,Buffalo,NY,14201
+en_US,Fort Wayne,IN,46801
+de_DE,Berlin,Berlin,10115
+de_DE,Hamburg,Hamburg,20095
+de_DE,München,Bayern,80331
+de_DE,Köln,Nordrhein-Westfalen,50667
+de_DE,Frankfurt,Hessen,60311
+de_DE,Stuttgart,Baden-Württemberg,70173
+de_DE,Düsseldorf,Nordrhein-Westfalen,40213
+de_DE,Dortmund,Nordrhein-Westfalen,44135
+de_DE,Essen,Nordrhein-Westfalen,45127
+de_DE,Leipzig,Sachsen,04109
+de_DE,Bremen,Bremen,28195
+de_DE,Dresden,Sachsen,01067
+de_DE,Hannover,Niedersachsen,30159
+de_DE,Nürnberg,Bayern,90402
+de_DE,Duisburg,Nordrhein-Westfalen,47051
+de_DE,Bochum,Nordrhein-Westfalen,44787
+de_DE,Wuppertal,Nordrhein-Westfalen,42103
+de_DE,Bielefeld,Nordrhein-Westfalen,33602
+de_DE,Bonn,Nordrhein-Westfalen,53111
+de_DE,Mannheim,Baden-Württemberg,68159
+de_DE,Karlsruhe,Baden-Württemberg,76133
+de_DE,Augsburg,Bayern,86150
+de_DE,Wiesbaden,Hessen,65183
+de_DE,Münster,Nordrhein-Westfalen,48143
+de_DE,Gelsenkirchen,Nordrhein-Westfalen,45879
+de_DE,Mönchengladbach,Nordrhein-Westfalen,41061
+de_DE,Aachen,Nordrhein-Westfalen,52062
+de_DE,Braunschweig,Niedersachsen,38100
+de_DE,Chemnitz,Sachsen,09111
+de_DE,Kiel,Schleswig-Holstein,24103
+de_DE,Halle,Sachsen-Anhalt,06108
+de_DE,Magdeburg,Sachsen-Anhalt,39104
+de_DE,Freiburg,Baden-Württemberg,79098
+de_DE,Krefeld,Nordrhein-Westfalen,47798
+de_DE,Mainz,Rheinland-Pfalz,55116
+de_DE,Lübeck,Schleswig-Holstein,23552
+de_DE,Erfurt,Thüringen,99084
+de_DE,Oberhausen,Nordrhein-Westfalen,46045
+de_DE,Rostock,Mecklenburg-Vorpommern,18055
+de_DE,Kassel,Hessen,34117
+de_DE,Hagen,Nordrhein-Westfalen,58089
+de_DE,Saarbrücken,Saarland,66111
+de_DE,Hamm,Nordrhein-Westfalen,59065
+de_DE,Potsdam,Brandenburg,14467
+de_DE,Mülheim,Nordrhein-Westfalen,45468
+de_DE,Oldenburg,Niedersachsen,26121
+de_DE,Leverkusen,Nordrhein-Westfalen,51373
+de_DE,Osnabrück,Niedersachsen,49074
+de_DE,Solingen,Nordrhein-Westfalen,42651
+de_DE,Heidelberg,Baden-Württemberg,69115
