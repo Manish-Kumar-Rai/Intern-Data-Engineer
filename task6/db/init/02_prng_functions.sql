@@ -1,6 +1,5 @@
 -- Pseudo-random number generator functions for deterministic data
 
--- Convert a text seed into a numeric hash safely
 CREATE OR REPLACE FUNCTION prng_hash(seed TEXT)
 RETURNS BIGINT
 LANGUAGE plpgsql

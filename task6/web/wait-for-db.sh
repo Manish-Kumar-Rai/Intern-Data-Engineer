@@ -1,5 +1,4 @@
 #!/usr/bin/env bash
-# simple wait-for PostgreSQL then run the command
 set -e
 host="$1"
 port="$2"
