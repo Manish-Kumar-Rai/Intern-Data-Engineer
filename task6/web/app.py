@@ -10,10 +10,6 @@ load_dotenv()
 app = Flask(__name__)
 
 def get_conn():
-    """
-    Connects to the PostgreSQL database using the DATABASE_URL environment variable.
-    Render automatically provides this variable when you attach a PostgreSQL service.
-    """
     db_url = os.environ.get("DATABASE_URL")
     if not db_url:
         raise Exception("DATABASE_URL environment variable not set")
