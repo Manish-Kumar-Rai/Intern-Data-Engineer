@@ -41,6 +41,11 @@ async def fetch_sheet():
     df = df.dropna(subset=["Date"]).reset_index(drop=True)
     return df
 
+@app.get("/")
+def home():
+    return {"status": "OK"}
+
+
 # ------------------- API: /data -------------------
 @app.get("/api/data")
 async def get_data():
