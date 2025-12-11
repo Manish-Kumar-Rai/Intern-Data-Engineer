@@ -8,7 +8,7 @@ from aiohttp import ClientSession
 from dotenv import load_dotenv
 from analysis import series_stats, anomalies_iqr, anomalies_zscore, anomalies_ma_pct, grubbs_test, poly_fit, poly_predict
 from pathlib import Path
-from weasyprint import HTML
+from weasyprint import HTML, CSS
 from jinja2 import Template
 
 load_dotenv()
@@ -18,7 +18,6 @@ if not SHEET_CSV_URL:
 
 app = FastAPI(title="Mining Dashboard API")
 
-
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["*"],
@@ -27,7 +26,6 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-# ------------------- Fetch CSV -------------------
 async def fetch_sheet():
     async with ClientSession() as sess:
         async with sess.get(SHEET_CSV_URL) as r:
@@ -46,8 +44,6 @@ async def fetch_sheet():
 def home():
     return {"status": "OK"}
 
-
-# ------------------- API: /data -------------------
 @app.get("/api/data")
 async def get_data():
     df = await fetch_sheet()
@@ -56,7 +52,6 @@ async def get_data():
         "mines": {c: df[c].fillna(np.nan).tolist() for c in df.columns if c != "Date"}
     }
 
-# ------------------- API: /analyze -------------------
 @app.post("/api/analyze")
 async def analyze(payload: dict):
     params = payload.get("params", {})
@@ -104,7 +99,6 @@ async def analyze(payload: dict):
 
     return {"dates": dates, "mines": mines, "total": total_obj}
 
-# ------------------- API: /report -------------------
 @app.post("/api/report")
 async def make_report(payload: dict):
     analysis = payload.get("analysis")
@@ -113,11 +107,9 @@ async def make_report(payload: dict):
     if not analysis:
         raise HTTPException(status_code=400, detail="Analysis data missing")
 
-    # Load template
     tpl = Path("report_template.html").read_text()
-    html = Template(tpl).render(analysis=analysis, charts=charts)
+    html = Template(tpl).render(analysis=analysis, charts=charts, now=pd.Timestamp.now().strftime("%Y-%m-%d %H:%M:%S"))
 
-    # Generate PDF (no Chrome, no Pyppeteer)
-    pdf = HTML(string=html).write_pdf()
+    pdf = HTML(string=html, base_url=str(Path(".").resolve())).write_pdf(stylesheets=[CSS("report_style.css")])
 
     return Response(content=pdf, media_type="application/pdf")
