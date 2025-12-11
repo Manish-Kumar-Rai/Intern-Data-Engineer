@@ -1,46 +1,56 @@
 <!doctype html>
 <html>
-<head><meta charset="utf-8"><title>Weyland-Yutani Corporation Mining Report</title>
-<style>
-body{font-family:Arial,sans-serif;color:#222;padding:20px}
-h1{font-size:20px}
-.section{margin-bottom:18px}
-.table{width:100%;border-collapse:collapse}
-.table th,.table td{border:1px solid #ddd;padding:6px;font-size:12px}
-.card{border:1px solid #eee;padding:8px;margin-bottom:8px}
-</style>
+<head>
+<meta charset="utf-8">
+<title>Weyland-Yutani Corporation Mining Report</title>
+<link rel="stylesheet" href="report_style.css">
 </head>
 <body>
-<h1>Mining Report</h1>
+
+<h1>Weyland-Yutani Corporation Mining Report</h1>
 <p>Generated: {{ now if now else "" }}</p>
+
 {% for name, data in analysis.mines.items() %}
-  <div class="section">
-    <h2>{{name}}</h2>
+<div class="section">
+    <h2>{{ name }}</h2>
+
     <div class="card">
-      <table class="table">
-        <tr><th>Mean</th><th>Std</th><th>Median</th><th>IQR</th></tr>
-        <tr>
-          <td>{{data.stats.mean}}</td><td>{{data.stats.std}}</td><td>{{data.stats.median}}</td><td>{{data.stats.iqr}}</td>
-        </tr>
-      </table>
+        <table class="table">
+            <tr><th>Mean</th><th>Std</th><th>Median</th><th>IQR</th></tr>
+            <tr>
+                <td>{{ data.stats.mean }}</td>
+                <td>{{ data.stats.std }}</td>
+                <td>{{ data.stats.median }}</td>
+                <td>{{ data.stats.iqr }}</td>
+            </tr>
+        </table>
     </div>
-    <div>
-      <h3>Anomalies</h3>
-      <ul>
-        <li>IQR: {{ data.iqr|length }}</li>
-        <li>Z-score: {{ data.z|length }}</li>
-        <li>MA%: {{ data.ma_pct|length }}</li>
-        <li>Grubbs: {{ data.grubbs|length }}</li>
-      </ul>
+
+    <div class="card">
+        <h3>Anomalies</h3>
+        <ul>
+            <li>IQR: <span class="badge badge-iqr">{{ data.iqr|length }}</span></li>
+            <li>Z-score: <span class="badge badge-z">{{ data.z|length }}</span></li>
+            <li>MA%: <span class="badge badge-ma">{{ data.ma_pct|length }}</span></li>
+            <li>Grubbs: <span class="badge badge-grubbs">{{ data.grubbs|length }}</span></li>
+        </ul>
     </div>
-  </div>
+
+    {% if charts and data.charts %}
+    <div class="card">
+        <h4>Charts</h4>
+        {% for chart_name, chart_data in data.charts.items() %}
+            <img class="chart" src="data:image/png;base64,{{ chart_data }}" alt="{{ chart_name }}">
+        {% endfor %}
+    </div>
+    {% endif %}
+
+</div>
 {% endfor %}
-{% if charts %}
-  <div class="section"><h2>Charts</h2>
-    {% for key, img in charts.items() %}
-      <div><h3>{{key}}</h3><img src="{{img}}" style="max-width:700px"></div>
-    {% endfor %}
-  </div>
-{% endif %}
+
+<footer>
+    Mining Report &copy; Weyland-Yutani Corporation
+</footer>
+
 </body>
 </html>

@@ -1,5 +1,4 @@
 import numpy as np
-import pandas as pd
 from scipy import stats
 from math import sqrt
 from numpy.linalg import lstsq
