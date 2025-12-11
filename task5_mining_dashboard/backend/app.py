@@ -7,7 +7,8 @@ from fastapi.middleware.cors import CORSMiddleware
 from aiohttp import ClientSession
 from dotenv import load_dotenv
 from analysis import series_stats, anomalies_iqr, anomalies_zscore, anomalies_ma_pct, grubbs_test, poly_fit, poly_predict
-import pyppeteer
+from pathlib import Path
+from weasyprint import HTML
 from jinja2 import Template
 
 load_dotenv()
@@ -112,16 +113,11 @@ async def make_report(payload: dict):
     if not analysis:
         raise HTTPException(status_code=400, detail="Analysis data missing")
 
-    tpl = open("report_template.html").read()
+    # Load template
+    tpl = Path("report_template.html").read_text()
     html = Template(tpl).render(analysis=analysis, charts=charts)
 
-    
-    browser = await pyppeteer.launch(
-        executablePath="/usr/bin/google-chrome-stable",  
-        args=["--no-sandbox", "--disable-setuid-sandbox"]
-    )
-    page = await browser.newPage()
-    await page.setContent(html, waitUntil="networkidle0")
-    pdf = await page.pdf(format="A4", printBackground=True)
-    await browser.close()
+    # Generate PDF (no Chrome, no Pyppeteer)
+    pdf = HTML(string=html).write_pdf()
+
     return Response(content=pdf, media_type="application/pdf")

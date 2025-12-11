@@ -4,7 +4,7 @@ pandas
 numpy
 scipy
 aiohttp
-pyppeteer
+WeasyPrint
 jinja2
 python-multipart
 python-dotenv
