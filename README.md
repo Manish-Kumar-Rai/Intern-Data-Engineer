@@ -3,7 +3,6 @@
 This repository contains the solutions for various data engineering tasks completed during my internship. Each task demonstrates skills in data processing, database management, Python programming, web development, and data visualization.
 
 ## Repository Structure
-
 Data Engineer Intern/
 ├── task1 # Data ingestion and transformation
 ├── task2 # File processing and checksum calculation
