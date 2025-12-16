@@ -4,12 +4,14 @@ This repository contains the solutions for various data engineering tasks comple
 
 ## Repository Structure
 Data Engineer Intern/
-├── task1 
-├── task2
-├── task3
-├── task4
-├── task5
-└── task6
+│
+├── task1 # Data ingestion and transformation
+├── task2 # File processing and checksum calculation
+├── task3 # Web method for lowest common multiple
+├── task4 # Data cleaning, aggregation, and visualization
+├── task5 # Google Spreadsheet realistic data generator
+├── task6 # Web application for generating fake user data
+└── README.md
 
 
 ---
